@@ -3,7 +3,7 @@ const msalConfig = {
     auth: {
         clientId: "ba4867dc-c80c-461c-9d0d-84af4a5b6f55", // You'll need to register an app in Azure AD
         authority: "https://login.microsoftonline.com/common",
-        redirectUri: window.location.origin
+        redirectUri: "https://tubatim32.github.io/Ourfamhilly-Home/"
     },
     cache: {
         cacheLocation: "localStorage",
