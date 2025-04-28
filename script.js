@@ -1,15 +1,29 @@
-// MSAL configuration for Microsoft authentication
-const msalConfig = {
-    auth: {
-        clientId: "ba4867dc-c80c-461c-9d0d-84af4a5b6f55", // You'll need to register an app in Azure AD
-        authority: "https://login.microsoftonline.com/common",
-        redirectUri: "https://tubatim32.github.io/Ourfamhilly-Home/"
-    },
-    cache: {
-        cacheLocation: "localStorage",
-        storeAuthStateInCookie: false
+// Initialize MSAL if available
+if (typeof msal !== 'undefined') {
+    try {
+        window.msalInstance = new msal.PublicClientApplication(msalConfig);
+        
+        // Add this login redirect handler
+        window.msalInstance.handleRedirectPromise().then(response => {
+            // Handle successful login if response exists
+            if (response) {
+                console.log("Login successful", response);
+                fetchCalendarEvents(response.account);
+            }
+        }).catch(error => {
+            console.error("Error during redirect handling:", error);
+        });
+        
+        // Check if user is already signed in
+        const accounts = window.msalInstance.getAllAccounts();
+        if (accounts.length > 0) {
+            // User is already signed in, fetch calendar events
+            fetchCalendarEvents(accounts[0]);
+        }
+    } catch (error) {
+        console.error("Error initializing MSAL:", error);
     }
-};
+}
 
 // Microsoft Graph API scopes for calendar access
 const graphScopes = ["Calendars.Read", "Calendars.ReadWrite"];
@@ -560,44 +574,23 @@ function connectToOutlook() {
     statusElement.textContent = "Connecting to Outlook...";
     
     if (!window.msalInstance) {
-        statusElement.textContent = "Microsoft Authentication Library not available. Please ensure you have internet connectivity.";
+        statusElement.textContent = "Microsoft Authentication Library not available.";
         return;
     }
     
-    const modal = document.getElementById('calendar-modal');
-    const sportType = modal.dataset.sportType;
-    
-    // Check if user is signed in
-    const accounts = window.msalInstance.getAllAccounts();
-    if (accounts.length > 0) {
-        // User is already signed in
-        if (sportType === 'outlook') {
-            // Just fetch calendar events if connecting the calendar widget
-            fetchCalendarEvents(accounts[0]);
-            statusElement.textContent = "Connected successfully!";
-            setTimeout(hideCalendarModal, 1500);
-        } else {
-            // Add event to calendar
-            addEventToOutlook(accounts[0]);
-        }
-    } else {
-        // User needs to sign in
-        window.msalInstance.loginPopup({
-            scopes: graphScopes
-        }).then(response => {
-            if (sportType === 'outlook') {
-                // Just fetch calendar events if connecting the calendar widget
-                fetchCalendarEvents(response.account);
-                statusElement.textContent = "Connected successfully!";
-                setTimeout(hideCalendarModal, 1500);
-            } else {
-                // Add event to calendar
-                addEventToOutlook(response.account);
-            }
-        }).catch(error => {
-            statusElement.textContent = "Authentication failed: " + error;
-        });
-    }
+    // Login with popup instead of trying to get token silently first
+    window.msalInstance.loginPopup({
+        scopes: graphScopes,
+        prompt: "select_account"
+    }).then(response => {
+        statusElement.textContent = "Connected successfully!";
+        // Get the account from the response
+        fetchCalendarEvents(response.account);
+        setTimeout(hideCalendarModal, 1500);
+    }).catch(error => {
+        console.error("Login error:", error);
+        statusElement.textContent = "Authentication failed: " + error;
+    });
 }
 
 // Add the event to Outlook calendar
