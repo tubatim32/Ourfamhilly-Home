@@ -142,3 +142,61 @@
                 <p>Home</p>
             </div>
             <div class="nav-item active">
+                <div class="nav-icon">Games</div>
+                <p>Games</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">Stats</div>
+                <p>Stats</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Full View (Hidden by default) -->
+    <div class="full-view" id="calendar-full-view">
+        <div class="mobile-header" style="background-color: #0078D4;">
+            <button id="calendar-back-button">←</button>
+            <h2>MY CALENDAR</h2>
+        </div>
+
+        <div class="season-filter">
+            <p id="calendar-date-range">Next 7 Days</p>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <div class="games-list" id="full-calendar-events">
+            <div class="loading-message">Loading calendar events...</div>
+        </div>
+
+        <div class="mobile-nav">
+            <div class="nav-item">
+                <div class="nav-icon">Home</div>
+                <p>Home</p>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">Events</div>
+                <p>Events</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">Add</div>
+                <p>Add</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Auth Modal -->
+    <div class="modal" id="calendar-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Connect to Outlook Calendar</h3>
+            <p>Connect to your Microsoft account to view and manage your calendar events.</p>
+            <button id="connect-outlook-btn">Connect to Outlook</button>
+            <div id="calendar-status"></div>
+        </div>
+    </div>
+
+    <!-- Microsoft Authentication Library -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
