@@ -1,0 +1,57 @@
+{
+  "season": "2024-2025",
+  "record": {
+    "overall": "25-8",
+    "conference": "14-4"
+  },
+  "games": [
+    {
+      "opponent": "Duke Blue Devils",
+      "date": "Apr 8, 2025",
+      "location": "home",
+      "result": "82-77 (W)"
+    },
+    {
+      "opponent": "Auburn Tigers",
+      "date": "Mar 29, 2025",
+      "location": "home",
+      "result": "78-72 (W)"
+    },
+    {
+      "opponent": "Kansas Jayhawks",
+      "date": "Mar 23, 2025",
+      "location": "home",
+      "result": "85-79 (W)"
+    },
+    {
+      "opponent": "Tennessee Volunteers",
+      "date": "Mar 15, 2025",
+      "location": "home",
+      "result": "76-81 (L)"
+    },
+    {
+      "opponent": "Arkansas Razorbacks",
+      "date": "Mar 8, 2025",
+      "location": "away",
+      "result": "90-84 (W)"
+    },
+    {
+      "opponent": "Florida Gators",
+      "date": "Mar 2, 2025",
+      "location": "home",
+      "result": "88-75 (W)"
+    },
+    {
+      "opponent": "Vanderbilt Commodores",
+      "date": "Feb 24, 2025",
+      "location": "away",
+      "result": "82-65 (W)"
+    },
+    {
+      "opponent": "Alabama Crimson Tide",
+      "date": "Feb 17, 2025",
+      "location": "home",
+      "result": "79-82 (L)"
+    }
+  ]
+}

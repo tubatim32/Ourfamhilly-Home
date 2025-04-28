@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ourfamhilly Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ourfamhilly Home</h1>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Widgets</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h2>Welcome to Ourfamhilly Home</h2>
+            <p>Your personal dashboard for family activities and information</p>
+        </section>
+
+        <section class="widgets">
+            <!-- New Calendar Widget -->
+            <div class="widget" id="outlook-widget">
+                <div class="widget-header" style="background-color: #0078D4;">
+                    <h3>My Calendar</h3>
+                    <span class="view-all" id="view-all-calendar">VIEW ALL</span>
+                </div>
+                <div class="widget-content">
+                    <p class="label">Upcoming Events:</p>
+                    <div id="calendar-events">
+                        <div class="event-placeholder">
+                            <div class="event-title">Loading events...</div>
+                            <div class="event-time">Please connect your Outlook account</div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="quick-stats">
+                        <p id="calendar-count">Events: --</p>
+                        <p id="connect-outlook" class="calendar-link">Connect</p>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- UK Basketball Widget -->
+            <div class="widget" id="basketball-widget">
+                <div class="widget-header">
+                    <h3>UK Basketball</h3>
+                    <span class="view-all" id="view-all-games">VIEW ALL</span>
+                </div>
+                <div class="widget-content">
+                    <p class="label">Next Game:</p>
+                    <h4 id="next-basketball-game">Loading...</h4>
+                    <p id="next-basketball-date">Loading...</p>
+                    
+                    <hr>
+                    <div class="quick-stats">
+                        <p id="season-record">Season: --</p>
+                        <p id="add-to-calendar" class="calendar-link">+ Calendar</p>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Bengals Widget -->
+            <div class="widget" id="bengals-widget">
+                <div class="widget-header" style="background-color: #FB4F14;">
+                    <h3>Cincinnati Bengals</h3>
+                    <span class="view-all" id="view-all-bengals">VIEW ALL</span>
+                </div>
+                <div class="widget-content">
+                    <p class="label">Next Game:</p>
+                    <h4 id="next-bengals-game">Loading...</h4>
+                    <p id="next-bengals-date">Loading...</p>
+                    
+                    <hr>
+                    <div class="quick-stats">
+                        <p id="bengals-record">Season: --</p>
+                        <p id="add-to-calendar-bengals" class="calendar-link">+ Calendar</p>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Basketball Full View (Hidden by default) -->
+    <div class="full-view" id="basketball-full-view">
+        <div class="mobile-header">
+            <button id="back-button">←</button>
+            <h2>UK BASKETBALL</h2>
+        </div>
+
+        <div class="season-filter">
+            <p id="basketball-season">2024-2025 Season</p>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <div class="games-list" id="games-list">
+            <div class="loading-message">Loading schedule data...</div>
+        </div>
+
+        <div class="mobile-nav">
+            <div class="nav-item">
+                <div class="nav-icon">Home</div>
+                <p>Home</p>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">Games</div>
+                <p>Games</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">Stats</div>
+                <p>Stats</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bengals Full View (Hidden by default) -->
+    <div class="full-view" id="bengals-full-view">
+        <div class="mobile-header" style="background-color: #FB4F14;">
+            <button id="bengals-back-button">←</button>
+            <h2>CINCINNATI BENGALS</h2>
+        </div>
+
+        <div class="season-filter">
+            <p id="bengals-season">2024-2025 Season</p>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <div class="games-list" id="bengals-games-list">
+            <div class="loading-message">Loading schedule data...</div>
+        </div>
+
+        <div class="mobile-nav">
+            <div class="nav-item">
+                <div class="nav-icon">Home</div>
+                <p>Home</p>
+            </div>
+            <div class="nav-item active">
