@@ -55,6 +55,24 @@ main {
     color: #555;
 }
 
+/* Full Width Calendar Widget */
+.full-width-widget {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.full-width-widget .widget {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.full-width-widget #calendar-events {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
+    max-height: none;
+}
+
 .widgets {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -84,6 +102,42 @@ main {
     align-items: center;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.action-button-light {
+    background-color: white;
+    color: #0078D4;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.action-button-light:hover {
+    background-color: #f0f0f0;
+}
+
 .view-all {
     cursor: pointer;
     font-size: 14px;
@@ -105,6 +159,10 @@ main {
 
 #bengals-widget .widget-content h4 {
     color: #FB4F14;
+}
+
+#transy-widget .widget-content h4 {
+    color: #8B0000;
 }
 
 hr {
@@ -129,6 +187,10 @@ hr {
     color: #FB4F14;
 }
 
+#transy-widget .calendar-link {
+    color: #8B0000;
+}
+
 #outlook-widget .calendar-link {
     color: #0078D4;
 }
@@ -147,18 +209,23 @@ hr {
 
 /* Calendar Events Style */
 #calendar-events {
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
 }
 
 .event-placeholder {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
 }
 
 .event-item {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f7ff;
+    margin-bottom: 10px;
+    border-left: 4px solid #0078D4;
 }
 
 .event-title {
@@ -199,7 +266,7 @@ hr {
     align-items: center;
 }
 
-#back-button, #bengals-back-button, #calendar-back-button {
+#back-button, #bengals-back-button, #calendar-back-button, #transy-back-button {
     background: none;
     border: none;
     color: white;
@@ -251,6 +318,10 @@ hr {
     color: #FB4F14;
 }
 
+#transy-full-view .game-title {
+    color: #8B0000;
+}
+
 #calendar-full-view .game-title {
     color: #0078D4;
 }
@@ -279,6 +350,10 @@ hr {
 
 #bengals-full-view .game-actions button {
     color: #FB4F14;
+}
+
+#transy-full-view .game-actions button {
+    color: #8B0000;
 }
 
 #calendar-full-view .game-actions button {
@@ -324,11 +399,15 @@ hr {
     background-color: #FB4F14;
 }
 
+#transy-full-view .nav-item.active .nav-icon {
+    background-color: #8B0000;
+}
+
 #calendar-full-view .nav-item.active .nav-icon {
     background-color: #0078D4;
 }
 
-/* Calendar Modal */
+/* Modals */
 .modal {
     display: none;
     position: fixed;
@@ -358,7 +437,7 @@ hr {
     cursor: pointer;
 }
 
-#connect-outlook-btn {
+#connect-outlook-btn, #save-event-btn, #confirm-add-to-calendar {
     background-color: #0078d4;
     color: white;
     border: none;
@@ -368,9 +447,61 @@ hr {
     cursor: pointer;
 }
 
-#calendar-status {
+#calendar-status, #event-status, #confirm-status {
     margin-top: 15px;
     color: #555;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.form-group.half {
+    width: 50%;
+}
+
+.quick-add-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.quick-add-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.quick-add-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 /* No Schedule Message */
@@ -415,5 +546,17 @@ hr {
     .modal-content {
         width: 90%;
         margin: 30% auto;
+    }
+
+    .full-width-widget #calendar-events {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group.half {
+        width: 100%;
     }
 }

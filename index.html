@@ -21,12 +21,15 @@
             <p>Your personal dashboard for family activities and information</p>
         </section>
 
-        <section class="widgets">
-            <!-- New Calendar Widget -->
+        <!-- Full-Width Calendar Widget -->
+        <section class="full-width-widget">
             <div class="widget" id="outlook-widget">
                 <div class="widget-header" style="background-color: #0078D4;">
                     <h3>My Calendar</h3>
-                    <span class="view-all" id="view-all-calendar">VIEW ALL</span>
+                    <div class="header-actions">
+                        <button id="add-new-event" class="action-button">+ Add Event</button>
+                        <span class="view-all" id="view-all-calendar">VIEW ALL</span>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <p class="label">Upcoming Events:</p>
@@ -45,7 +48,9 @@
                 </div>
                 <div class="expand-indicator"></div>
             </div>
+        </section>
 
+        <section class="widgets">
             <!-- UK Basketball Widget -->
             <div class="widget" id="basketball-widget">
                 <div class="widget-header">
@@ -81,6 +86,26 @@
                     <div class="quick-stats">
                         <p id="bengals-record">Season: --</p>
                         <p id="add-to-calendar-bengals" class="calendar-link">+ Calendar</p>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Transylvania Women's Basketball Widget -->
+            <div class="widget" id="transy-widget">
+                <div class="widget-header" style="background-color: #8B0000;">
+                    <h3>Transy Women's Basketball</h3>
+                    <span class="view-all" id="view-all-transy">VIEW ALL</span>
+                </div>
+                <div class="widget-content">
+                    <p class="label">Next Game:</p>
+                    <h4 id="next-transy-game">Loading...</h4>
+                    <p id="next-transy-date">Loading...</p>
+                    
+                    <hr>
+                    <div class="quick-stats">
+                        <p id="transy-record">Season: --</p>
+                        <p id="add-to-calendar-transy" class="calendar-link">+ Calendar</p>
                     </div>
                 </div>
                 <div class="expand-indicator"></div>
@@ -152,11 +177,44 @@
         </div>
     </div>
 
+    <!-- Transy Full View (Hidden by default) -->
+    <div class="full-view" id="transy-full-view">
+        <div class="mobile-header" style="background-color: #8B0000;">
+            <button id="transy-back-button">←</button>
+            <h2>TRANSY WOMEN'S BASKETBALL</h2>
+        </div>
+
+        <div class="season-filter">
+            <p id="transy-season">2024-2025 Season</p>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <div class="games-list" id="transy-games-list">
+            <div class="loading-message">Loading schedule data...</div>
+        </div>
+
+        <div class="mobile-nav">
+            <div class="nav-item">
+                <div class="nav-icon">Home</div>
+                <p>Home</p>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">Games</div>
+                <p>Games</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">Stats</div>
+                <p>Stats</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Calendar Full View (Hidden by default) -->
     <div class="full-view" id="calendar-full-view">
         <div class="mobile-header" style="background-color: #0078D4;">
             <button id="calendar-back-button">←</button>
             <h2>MY CALENDAR</h2>
+            <button id="full-add-new-event" class="action-button-light">+ Add Event</button>
         </div>
 
         <div class="season-filter">
@@ -192,6 +250,67 @@
             <p>Connect to your Microsoft account to view and manage your calendar events.</p>
             <button id="connect-outlook-btn">Connect to Outlook</button>
             <div id="calendar-status"></div>
+        </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div class="modal" id="add-event-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Add New Event</h3>
+            <form id="new-event-form">
+                <div class="form-group">
+                    <label for="event-title">Event Title:</label>
+                    <input type="text" id="event-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-date">Date:</label>
+                    <input type="date" id="event-date" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="event-start-time">Start Time:</label>
+                        <input type="time" id="event-start-time" required>
+                    </div>
+                    
+                    <div class="form-group half">
+                        <label for="event-end-time">End Time:</label>
+                        <input type="time" id="event-end-time" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-location">Location (optional):</label>
+                    <input type="text" id="event-location">
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-attendees">Attendees (emails, comma separated):</label>
+                    <input type="text" id="event-attendees">
+                    <div class="quick-add-buttons">
+                        <button type="button" id="add-tim-btn" class="quick-add-btn">Add Tim</button>
+                        <button type="button" id="add-ashley-btn" class="quick-add-btn">Add Ashley</button>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="save-event-btn">Add to Calendar</button>
+                </div>
+            </form>
+            <div id="event-status"></div>
+        </div>
+    </div>
+
+    <!-- Add to Calendar Confirmation Modal -->
+    <div class="modal" id="calendar-confirm-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Add to Your Calendar</h3>
+            <p id="calendar-event-details">Event details will appear here</p>
+            <button id="confirm-add-to-calendar">Add to Calendar</button>
+            <div id="confirm-status"></div>
         </div>
     </div>
 
