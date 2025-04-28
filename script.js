@@ -1,7 +1,7 @@
 // MSAL configuration for Microsoft authentication
 const msalConfig = {
     auth: {
-        clientId: "YOUR_CLIENT_ID_HERE", // You'll need to register an app in Azure AD
+        clientId: "ba4867dc-c80c-461c-9d0d-84af4a5b6f55", // You'll need to register an app in Azure AD
         authority: "https://login.microsoftonline.com/common",
         redirectUri: window.location.origin
     },
