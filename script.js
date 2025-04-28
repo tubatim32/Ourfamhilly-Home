@@ -1,29 +1,15 @@
-// Initialize MSAL if available
-if (typeof msal !== 'undefined') {
-    try {
-        window.msalInstance = new msal.PublicClientApplication(msalConfig);
-        
-        // Add this login redirect handler
-        window.msalInstance.handleRedirectPromise().then(response => {
-            // Handle successful login if response exists
-            if (response) {
-                console.log("Login successful", response);
-                fetchCalendarEvents(response.account);
-            }
-        }).catch(error => {
-            console.error("Error during redirect handling:", error);
-        });
-        
-        // Check if user is already signed in
-        const accounts = window.msalInstance.getAllAccounts();
-        if (accounts.length > 0) {
-            // User is already signed in, fetch calendar events
-            fetchCalendarEvents(accounts[0]);
-        }
-    } catch (error) {
-        console.error("Error initializing MSAL:", error);
+// MSAL configuration for Microsoft authentication
+const msalConfig = {
+    auth: {
+        clientId: "ba4867dc-c80c-461c-9d0d-84af4a5b6f55", // Your Azure AD app client ID
+        authority: "https://login.microsoftonline.com/common",
+        redirectUri: "https://tubatim32.github.io/Ourfamhilly-Home/"
+    },
+    cache: {
+        cacheLocation: "localStorage",
+        storeAuthStateInCookie: false
     }
-}
+};
 
 // Microsoft Graph API scopes for calendar access
 const graphScopes = ["Calendars.Read", "Calendars.ReadWrite"];
